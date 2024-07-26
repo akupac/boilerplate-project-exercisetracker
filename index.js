@@ -19,14 +19,34 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-/* You should provide your own project, not the example URL.
-# TODO:You can POST to /api/users with form data username to create a new user.
-# TODO:The returned response from POST /api/users with form data username will be an object with username and _id properties.
-# TODO:You can make a GET request to /api/users to get a list of all users.
-# TODO:The GET request to /api/users returns an array.
-# TODO:Each element in the array returned from GET /api/users is an object literal containing a user's username and _id.
-*/
+app.route('/api/users').get(function(req, res){
+  
+}).post(async function(req, res){
+  //# TODO:You can POST to /api/users with form data username to create a new user.
+  // # TODO:The returned response from POST /api/users with form data username will be an object with username and _id properties.
 
+  try {
+    await userModel.create({username: req.body.username}).then((user) => {
+      console.info(`User ${user.username} added successfully`)
+      return res.status(200).json(user)  
+    })
+  } catch (error) {
+    console.error("User already exists:", error.errorResponse.keyValue)
+  }
+}).get(function(req, res){
+  try {
+    userModel.find().then((users) => {
+      return res.status(200).json(users)
+    })
+  } catch (error) {
+    
+  }
+  // # TODO:You can make a GET request to /api/users to get a list of all users.
+  // # TODO:The GET request to /api/users returns an array.
+  // # TODO:Each element in the array returned from GET /api/users is an object literal containing a user's username and _id.
+  
+
+})
 /*
 # TODO:You can POST to /api/users/:_id/exercises with form data description, duration, and optionally date. If no date is supplied, the current date will be used.
 # TODO:The response returned from POST /api/users/:_id/exercises will be the user object with the exercise fields added.
