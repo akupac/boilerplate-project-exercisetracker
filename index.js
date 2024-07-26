@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 require('dotenv').config()
+let userModel = require('./userModel');
+let exerciseModel = require('./exerciseModel');
+let logModel = require('./logModel');
+
+
 
 app.use(cors())
 app.use(express.static('public'))
