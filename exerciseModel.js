@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 
 const exerciseSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        unique: true
-    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

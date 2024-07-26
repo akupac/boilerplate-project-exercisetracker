@@ -10,12 +10,6 @@ const logSchema = new mongoose.Schema({
         required: true,
         min: [0, 'Count must be a positive number']
     },
-
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        unique: true
-    },
     log: [{
         description: {
             type: String,
