@@ -70,11 +70,11 @@ app.post('/api/users/:_id/exercises', async function (req, res) {
         await userModel.findByIdAndUpdate(req.params._id, {
           log: [exercise],
         })
-        await userModel.findByIdAndUpdate(req.params._id, {
+        let user = await userModel.findByIdAndUpdate(req.params._id, {
           $push: {log: exercise},
         })
         //await userModel.log.push(exercise)
-        return res.status(200).json(exercise)
+        return res.status(200).json(user)
         
       })
   } catch (error) {
