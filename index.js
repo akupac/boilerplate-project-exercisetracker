@@ -56,24 +56,22 @@ app.route('/api/users').post(async function (req, res) {
 */
 app.post('/api/users/:_id/exercises', async function (req, res) {
   try {
-
-    //let user = await userModel.findById(req.params._id);
-
+    // #TODO : fazer data aparecer como Mon Jan 01 1990
+    let date = new Date(req.body.date).toDateString()
+    console.debug("date", date)
 
     await exerciseModel.create({
       description: req.body.description,
       duration: req.body.duration,
-      date: req.body.date  
+      date: date
       })
       .then(async (exercise) => {
         console.debug(exercise)
         await userModel.findByIdAndUpdate(req.params._id, {
-          log: [exercise],
-        })
-        let user = await userModel.findByIdAndUpdate(req.params._id, {
           $push: {log: exercise},
         })
-        //await userModel.log.push(exercise)
+        let user = await userModel.findById(req.params._id)
+        console.debug(user)
         return res.status(200).json(user)
         
       })
