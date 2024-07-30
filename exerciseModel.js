@@ -11,9 +11,9 @@ const exerciseSchema = new mongoose.Schema({
         min: [0, 'Duration must be a positive number']
     },
     date: {
-        //type: String,
-        type: Date,
-        default: Date.now()
+        type: String,
+        //type: Date,
+        //default: Date.now()
     }
 });
 

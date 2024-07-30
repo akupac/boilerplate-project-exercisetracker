@@ -66,13 +66,13 @@ app.post('/api/users/:_id/exercises', async function (req, res) {
       date: date
       })
       .then(async (exercise) => {
-        console.debug(exercise)
+        //console.debug(exercise)
         await userModel.findByIdAndUpdate(req.params._id, {
           $push: {log: exercise},
         })
         let user = await userModel.findById(req.params._id)
-        console.debug(user)
-        return res.status(200).json(user)
+        //console.debug(user)
+        return res.status(200).json(exercise)
         
       })
   } catch (error) {
